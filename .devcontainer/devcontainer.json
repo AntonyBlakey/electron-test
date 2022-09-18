@@ -1,0 +1,41 @@
+{
+  "name": "${containerWorkspaceFolderBasename}-dev",
+  "containerEnv": {
+    "PORT_PREFIX": "60",
+    "COMPOSE_PROJECT_NAME": "${containerWorkspaceFolderBasename}"
+  },
+  "initializeCommand": "docker network create ${containerWorkspaceFolderBasename}_default || exit 0",
+  // Doesn't currently work with "Clone in ..." command
+  // "workspaceMount": "source=${containerWorkspaceFolderBasename}_checkout,target=/workspace,type=volume",
+  // "workspaceFolder": "/workspace",
+  "runArgs": [
+    "--init",
+    "--name",
+    "${containerWorkspaceFolderBasename}-dev",
+    "--network",
+    "${containerWorkspaceFolderBasename}_default"
+  ],
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+    // Optimization to not reinstall extensions and vscode server over restart
+    // This is supported in DA by creating the /home/dev/... directory
+    "source=${containerWorkspaceFolderBasename}_vscode,target=/home/dev/.vscode-server/extensions,type=volume"
+  ],
+  // Required to install pupetteer.
+  "postCreateCommand": "sudo chmod ugo+rw /var/run/docker.sock && sudo apt install -y chromium-bsu chromium-browser",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "svelte.svelte-vscode",
+        "cweijan.vscode-postgresql-client2",
+        "davidanson.vscode-markdownlint",
+        "yzhang.markdown-all-in-one",
+        "eamodio.gitlens",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "remoteUser": "dev",
+  "image": "linkuistics/devanyware-headless:4.1.2"
+}

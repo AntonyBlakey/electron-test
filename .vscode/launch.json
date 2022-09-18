@@ -1,0 +1,49 @@
+{
+  "configurations": [
+    {
+      "name": "Debug yarn generate",
+      "request": "launch",
+      "runtimeArgs": [
+        "generate"
+      ],
+      "runtimeExecutable": "yarn",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
+      "cwd": "${workspaceFolder}/generator/inputs"
+    },
+    {
+      "name": "Debug yarn generate-documentation",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": [
+        "generate:graphql-documentation"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "cwd": "${workspaceFolder}/generator/inputs",
+      "sourceMaps": true,
+      "preLaunchTask": "npm: build-and-install:graphql-documentation-plugin - generator/inputs",
+      "console": "internalConsole"
+    },
+    {
+      "name": "Debug yarn generate-webcomponents",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": [
+        "generate:webcomponents"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "cwd": "${workspaceFolder}/generator/inputs",
+      "sourceMaps": true,
+      "preLaunchTask": "npm: build-and-install:webcomponents-plugin - generator/inputs",
+      "console": "internalConsole"
+    }
+  ]
+}
