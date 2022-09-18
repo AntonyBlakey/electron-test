@@ -22,7 +22,7 @@
     "source=${containerWorkspaceFolderBasename}_vscode,target=/home/dev/.vscode-server/extensions,type=volume"
   ],
   // Required to install electron
-  "postCreateCommand": "sudo chmod ugo+rw /var/run/docker.sock && da/install-python-version 3.10.6 && sudo apt install g++",
+  "postCreateCommand": "sudo chmod ugo+rw /var/run/docker.sock && (cd ~ ; zsh -c 'da/install-python-version 3.10.6') && sudo apt install -y g++",
   "customizations": {
     "vscode": {
       "extensions": [
