@@ -28,11 +28,9 @@
       "extensions": [
         "esbenp.prettier-vscode",
         "svelte.svelte-vscode",
-        "cweijan.vscode-postgresql-client2",
         "davidanson.vscode-markdownlint",
         "yzhang.markdown-all-in-one",
-        "eamodio.gitlens",
-        "ms-azuretools.vscode-docker"
+        "eamodio.gitlens"
       ]
     }
   },
