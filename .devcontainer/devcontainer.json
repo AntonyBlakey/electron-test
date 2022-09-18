@@ -21,8 +21,8 @@
     // This is supported in DA by creating the /home/dev/... directory
     "source=${containerWorkspaceFolderBasename}_vscode,target=/home/dev/.vscode-server/extensions,type=volume"
   ],
-  // Required to install pupetteer.
-  "postCreateCommand": "sudo chmod ugo+rw /var/run/docker.sock && sudo apt install -y chromium-bsu chromium-browser",
+  // Required to install electron
+  "postCreateCommand": "sudo chmod ugo+rw /var/run/docker.sock && da/install-python-version 3.10.6 && sudo apt install g++",
   "customizations": {
     "vscode": {
       "extensions": [
